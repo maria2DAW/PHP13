@@ -65,5 +65,85 @@ and open the template in the editor.
         echo (frase_mayus("esto es una prueba.", false));
         
         ?>
+        
+        <h1>Funciones con parámetro por referencia</h1>
+        
+        <?php  
+        
+        /*Parámetros por valor y por referencia
+
+         * -Paso de parámetro por valor (por defecto en PHP es así):
+         * 
+         * function ejemplo($param)
+         * {         
+         *      $param++;
+         * }
+         * 
+         * -Paso de parámetro por referencia
+         * 
+         * function ejemplo (&$param)
+         * {
+         *      $param++;
+         * }         
+         */
+        
+        function incrementa($valor1)
+        {
+            $valor1++;
+            
+            return $valor1;
+        }
+        
+        echo incrementa(5);
+        
+        echo "<br /><br />";
+        
+        $numero = 5;
+        
+        echo incrementa($numero)."<br />";
+        
+        echo $numero;
+        
+        function incrementaReferencia(&$valor2) //Colocamos "&" delante del parámetro para indicar que es por referencia
+        {
+            //Con los valores por referencia se crea una conexión con los cambios de la 
+            //variable en el exterior de la función
+            $valor2++;
+            
+            return $valor2;
+        }
+        
+        $numero2 = 5;
+        
+        echo "<br /><br />";
+        
+        //En la llamada a una función con parámetros por referencia,
+        //sólo se le puede pasar por parámetro una variable ya definida, en este caso "$numero2".
+        echo incrementaReferencia($numero2);
+        
+        echo "<br /><br />";
+        
+        echo $numero2;
+        
+        echo "<br /><br />";
+        
+        function cambia_mayus(&$param)
+        {
+            $param = strtolower($param);
+            
+            $param = ucwords($param);
+            
+            return $param;
+        }
+        
+        $cadena = "hOlA mUnDo";
+        
+        echo cambia_mayus($cadena);
+        
+        echo "<br /><br />";
+        
+        echo $cadena;
+        
+        ?>
     </body>
 </html>
